@@ -46,3 +46,18 @@ cartButton.addEventListener("click", function () {
         ? cartSpoil.classList.replace('hide', 'reveal')
         : cartSpoil.classList.replace('reveal', 'hide')
 })
+
+const cartOpacity = document.querySelector("img.cart")
+const totalOpacity = document.querySelector("span.cart")
+
+cartButton.addEventListener("click", function () {
+    cartSpoil.classList.contains('hide')
+        ? cartOpacity.style.opacity = "0.4"
+        : cartOpacity.style.opacity = "1";
+})
+
+cartButton.addEventListener("click", function () {
+    cartSpoil.classList.contains('hide')
+        ? totalOpacity.style.opacity = "0.4"
+        : totalOpacity.style.opacity = "1";
+})
