@@ -29,7 +29,7 @@ h3 {
 }
 
 h4 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--clr-fontb);
 }
@@ -41,13 +41,13 @@ p {
 }
 
 body {
-    font-size: 0.75rem;
-    font-weight: 200;
+    font-size: 0.8rem;
+    font-weight: 500;
     line-height: 1.4rem;
     color: var(--clr-fontb);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 64em) {
     h1 {
         font-size: 1.4rem;
         font-weight: 500;
@@ -58,8 +58,12 @@ body {
         font-size: 1rem;
     }
 
+    h4 {
+        line-height: 0;
+    }
+
     p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         line-height: 1.2rem;
     }
 }
@@ -71,14 +75,15 @@ header {
     margin: 15px 0 30px;
 }
 
-div.cart {
+#cart {
     float: right;
-    padding: 5px 20px 0 0;
+    cursor: pointer;
+    padding: 5px 25px 0 0;
 }
 
 img.cart {
     visibility: visible;
-    margin-right: -34px;
+    margin-right: -38px;
     width: 13px;
 }
 
@@ -86,7 +91,7 @@ span.mycart {
     visibility: hidden;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 64em) {
     header {
         max-width: 1440px;
         margin: 15px auto 35px;
@@ -106,21 +111,34 @@ span.mycart {
     }
 }
 
+/*spoiler*/
+#spoil {}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.reveal {
+    visibility: visible;
+    opacity: 1;
+}
+
 /*tee*/
 #tee {
-    max-width: 270px;
+    max-width: 350px;
     margin: 0 auto;
 }
 
 img.tee {
-    max-width: 270px;
+    max-width: 340px;
 }
 
 p.tee {
     padding: 5px 0 20px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 64em) {
     #tee {
         display: flex;
         max-width: 1150px;
@@ -134,7 +152,7 @@ p.tee {
     }
 
     div.tee {
-        padding-left: 30px;
+        padding-left: 40px;
     }
 
     h2.tee {
@@ -150,14 +168,11 @@ div.size {
 h4.size {
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 0;
-    margin: 0;
 }
 
 h4.star {
     color: var(--clr-star);
-    padding: 0;
-    margin: 0 0 0 -2px;
+    margin-left: -2px;
 }
 
 /*sizeOptions*/
@@ -167,20 +182,33 @@ div.sizeOptions {
 
 h4.sizeOptions {
     text-transform: uppercase;
-    border: 1px solid var(--clr-borderlg);
+    cursor: pointer;
+    border: 2px solid var(--clr-borderlg);
     text-align: center;
     height: 40px;
     width: 40px;
-    margin: 0px 5px 12px 0px;
+    margin: 0px 6px 15px 0px;
     line-height: 2.5rem;
     font-weight: 100;
 }
 
+#select {
+    padding-left: 5px;
+    color: var(--clr-fonta);
+}
+
 #addtocart {
     text-transform: uppercase;
+    cursor: pointer;
     display: inline-block;
     margin-top: 8px;
-    padding: 5px 20px;
+    padding: 6px 30px;
     letter-spacing: 1px;
     border: 2px solid var(--clr-borderdg);
+}
+
+#addtocart:hover {
+    background: var(--clr-fonta);
+    color: whitesmoke;
+    transition-duration: 0.2s;
 }

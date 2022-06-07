@@ -17,19 +17,23 @@
 
 <body>
     <header>
-        <div class="cart">
+        <div id="cart">
             <img src="img/shop.png" class="cart" alt="picture of shopping cart" />
             <span class="mycart">My Cart</span>
-            <span class="cart">( 4 )</span>
+            <span class="cart">( 0 )</span>
         </div>
+        <span id="spoil" class="hide">
+            <p>@</p>
+        </span>
     </header>
     <!-- classic tee -->
     <section id="tee">
         <img src="img/classic-tee.jpg" class="tee" alt="picture of classic tee" />
         <div class="tee">
             <h1>Classic Tee</h1>
-            <h2>$75.00</h2>
-            <p class="tee">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            <h2 class="tee">$75.00</h2>
+            <p class="tee">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -38,11 +42,12 @@
             <div class="size">
                 <h4 class="size">size</h4>
                 <h4 class="star">*</h4>
+                <h4 id="select"></h4>
             </div>
             <div class="sizeOptions">
-                <h4 class="sizeOptions">s</h4>
-                <h4 class="sizeOptions">m</h4>
-                <h4 class="sizeOptions">l</h4>
+                <h4 id="s" class="sizeOptions">s</h4>
+                <h4 id="m" class="sizeOptions">m</h4>
+                <h4 id="l" class="sizeOptions">l</h4>
             </div>
             <h2 id="addtocart">add to cart</h2>
         </div>
