@@ -40,24 +40,29 @@ large.addEventListener("click", function () {
 //My Cart
 const cartButton = document.querySelector("#cart")
 const cartSpoil = document.querySelector("#spoil")
-
-cartButton.addEventListener("click", function () {
-    cartSpoil.classList.contains('hide')
-        ? cartSpoil.classList.replace('hide', 'reveal')
-        : cartSpoil.classList.replace('reveal', 'hide')
-})
-
 const cartOpacity = document.querySelector("img.cart")
 const totalOpacity = document.querySelector("span.cart")
+const body = document.querySelector("body")
+const spoiler = document.querySelector("spoiler")
+
+function clickOn() {
+    cartSpoil.classList.replace('hide', 'reveal')
+    cartOpacity.style.opacity = "1"
+    body.style.color = "var(--clr-fonta)"
+    cartButton.style.background = "white"
+    cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
+}
+
+function clickOff() {
+    cartSpoil.classList.replace('reveal', 'hide')
+    cartOpacity.style.opacity = "0.4"
+    body.style.color = "var(--clr-fontb)"
+    cartButton.style.background = "var(--clr-header)"
+    cartButton.style.borderColor = "transparent transparent white"
+}
 
 cartButton.addEventListener("click", function () {
     cartSpoil.classList.contains('hide')
-        ? cartOpacity.style.opacity = "0.4"
-        : cartOpacity.style.opacity = "1";
-})
-
-cartButton.addEventListener("click", function () {
-    cartSpoil.classList.contains('hide')
-        ? totalOpacity.style.opacity = "0.4"
-        : totalOpacity.style.opacity = "1";
+        ? clickOn()
+        : clickOff()
 })
