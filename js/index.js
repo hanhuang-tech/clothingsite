@@ -8,6 +8,7 @@ function renderSize(a) {
     selectSize.innerHTML = a
 }
 
+//change size based on which size is selected
 small.addEventListener("click", function () {
     renderSize("S");
     small.style.color = "var(--clr-fonta)";
@@ -17,7 +18,6 @@ small.addEventListener("click", function () {
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderlg)";
 });
-
 medium.addEventListener("click", function () {
     renderSize("M");
     small.style.color = "var(--clr-fontb)";
@@ -36,14 +36,14 @@ large.addEventListener("click", function () {
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderdg)";
 });
-
-//My Cart
+//spoiler
 const cartButton = document.querySelector("#cart")
 const cartSpoil = document.querySelector("#spoil")
 const cartOpacity = document.querySelector("img.cart")
 const totalOpacity = document.querySelector("span.cart")
 const body = document.querySelector("body")
-const spoiler = document.querySelector("spoiler")
+let clickToggle = false
+let spoiler = document.querySelector("#spoil2")
 
 function clickOn() {
     cartSpoil.classList.replace('hide', 'reveal')
@@ -51,6 +51,7 @@ function clickOn() {
     body.style.color = "var(--clr-fonta)"
     cartButton.style.background = "white"
     cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
+    clickOnOff()
 }
 
 function clickOff() {
@@ -59,10 +60,60 @@ function clickOff() {
     body.style.color = "var(--clr-fontb)"
     cartButton.style.background = "var(--clr-header)"
     cartButton.style.borderColor = "transparent transparent white"
+    clickOnOff()
 }
 
 cartButton.addEventListener("click", function () {
-    cartSpoil.classList.contains('hide')
-        ? clickOn()
-        : clickOff()
-})
+    if (clickToggle == false) {
+        clickToggle = true
+        clickOn()
+    } else {
+        clickToggle = false
+        clickOff()
+    }
+});
+
+
+
+//cart items
+
+function clickOnOff() {
+    let cartItems = spoiler.cloneNode(true)
+    cartItems.id = 'cart2'
+    cartItems.classList.add('test')
+    //add vers 2 after spoiler
+    document.body.appendChild(cartItems);
+}
+
+
+
+
+////////////////////
+var s = document.querySelector("#spoil2")
+
+function clicka() {
+    let s2 = s.cloneNode(true)
+    s2.id = 'cart2'
+    s2.classList.add('test')
+    //add vers 2 after spoiler
+    s.after(s2)
+}
+function clickb() {
+    let s2 = s.cloneNode(true)
+    s2.id = 'cart2'
+    s2.classList.add('test')
+    //add vers 2 after spoiler
+    s.after(s2)
+}
+
+
+
+cartButton.addEventListener("click", function () {
+    if (clickToggle == false) {
+        clickToggle = true
+        clicka()
+    } else {
+        clickToggle = false
+        clickb()
+    }
+});

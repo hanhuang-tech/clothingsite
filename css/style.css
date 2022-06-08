@@ -132,6 +132,7 @@ span.mycart {
     height: 200px;
     width: 340px;
     border: 2px solid var(--clr-borderlg);
+    font-size: 4em;
 }
 
 .hide {
@@ -239,4 +240,8 @@ h4.sizeOptions {
     background: var(--clr-fonta);
     color: whitesmoke;
     transition-duration: 0.2s;
+}
+
+.test {
+    background: rebeccapurple;
 }
