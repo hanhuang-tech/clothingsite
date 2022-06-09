@@ -127,7 +127,7 @@ span.mycart {
     position: absolute;
     z-index: -1;
     background: white;
-    left: 18px;
+    right: 12px;
     top: 30px;
     height: 200px;
     width: 340px;
@@ -136,17 +136,16 @@ span.mycart {
 }
 
 .hide {
-    visibility: hidden;
     opacity: 0;
 }
 
 .reveal {
-    visibility: visible;
     opacity: 1;
 }
 
 /*tee*/
 #tee {
+    position: relative;
     max-width: 340px;
     margin: 0 auto;
 }
@@ -221,7 +220,7 @@ h4.sizeOptions {
     font-weight: 100;
 }
 
-#select {
+#chosensize {
     padding-left: 5px;
     color: var(--clr-fonta);
 }
@@ -242,6 +241,41 @@ h4.sizeOptions {
     transition-duration: 0.2s;
 }
 
-.test {
-    background: rebeccapurple;
+/* footer */
+#footer {
+    position: relative;
+    z-index: 1;
+    background: lightslategray;
+    height: 35px;
+    width: 100%;
+    bottom: 0px;
+    margin-top: 10px;
+}
+
+#footericon {
+    position: absolute;
+    z-index: 1;
+    background: yellowgreen;
+    bottom: 0;
+    width: 35px;
+    padding: 0 20px;
+}
+
+h4.footer {
+    position: absolute;
+    bottom: -14px;
+    right: 10px;
+    font-weight: var(--fw-reg);
+    font-size: 1.4rem;
+    color: white;
+}
+
+@media (min-width: 64em) {
+    #footer {
+        position: absolute;
+    }
+
+    h4.footer {
+        font-size: 1.5rem;
+    }
 }

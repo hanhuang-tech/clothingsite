@@ -2,13 +2,14 @@
 const small = document.querySelector("#s")
 const medium = document.querySelector("#m")
 const large = document.querySelector("#l")
-let selectSize = document.querySelector("#select")
+const chosenSize = document.querySelector("#chosensize")
+let sizeSelected = false
 
 function renderSize(a) {
-    selectSize.innerHTML = a
+    chosenSize.innerHTML = a
 }
 
-//change size based on which size is selected
+//change size when selected
 small.addEventListener("click", function () {
     renderSize("S");
     small.style.color = "var(--clr-fonta)";
@@ -17,6 +18,7 @@ small.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderdg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderlg)";
+    sizeSelected = true
 });
 medium.addEventListener("click", function () {
     renderSize("M");
@@ -26,6 +28,7 @@ medium.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderdg)";
     large.style.borderColor = "var(--clr-borderlg)";
+    sizeSelected = true
 });
 large.addEventListener("click", function () {
     renderSize("L");
@@ -35,15 +38,35 @@ large.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderdg)";
+    sizeSelected = true
 });
+
+//add to cart
+let size = new Array(3) //s,m,l
+let sizeTotal = 0
+const addToCart = document.querySelector("#addtocart")
+let cartItems = document.querySelector("span.cart")
+let sAdded = 0
+let mAdded = 0
+let lAdded = 0
+
+addToCart.addEventListener("click", function () {
+    for (let i = 0; i < sizeSelected.Length; i++) {
+        return sizeSelected[i]
+    }
+    if (true) {
+        alert("Please select a size first")
+    }
+    cartItems.innerHTML = `( ` + sizeTotal++ + ` )`
+});
+
 //spoiler
 const cartButton = document.querySelector("#cart")
 const cartSpoil = document.querySelector("#spoil")
 const cartOpacity = document.querySelector("img.cart")
-const totalOpacity = document.querySelector("span.cart")
 const body = document.querySelector("body")
 let clickToggle = false
-let spoiler = document.querySelector("#spoil2")
+let spoiler = document.querySelector("spoiler")
 
 function clickOn() {
     cartSpoil.classList.replace('hide', 'reveal')
@@ -51,7 +74,6 @@ function clickOn() {
     body.style.color = "var(--clr-fonta)"
     cartButton.style.background = "white"
     cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
-    clickOnOff()
 }
 
 function clickOff() {
@@ -60,7 +82,6 @@ function clickOff() {
     body.style.color = "var(--clr-fontb)"
     cartButton.style.background = "var(--clr-header)"
     cartButton.style.borderColor = "transparent transparent white"
-    clickOnOff()
 }
 
 cartButton.addEventListener("click", function () {
@@ -73,47 +94,13 @@ cartButton.addEventListener("click", function () {
     }
 });
 
-
-
 //cart items
 
 function clickOnOff() {
-    let cartItems = spoiler.cloneNode(true)
+    let cartItems = cartSpoil.cloneNode(true)
     cartItems.id = 'cart2'
     cartItems.classList.add('test')
     //add vers 2 after spoiler
     document.body.appendChild(cartItems);
 }
 
-
-
-
-////////////////////
-var s = document.querySelector("#spoil2")
-
-function clicka() {
-    let s2 = s.cloneNode(true)
-    s2.id = 'cart2'
-    s2.classList.add('test')
-    //add vers 2 after spoiler
-    s.after(s2)
-}
-function clickb() {
-    let s2 = s.cloneNode(true)
-    s2.id = 'cart2'
-    s2.classList.add('test')
-    //add vers 2 after spoiler
-    s.after(s2)
-}
-
-
-
-cartButton.addEventListener("click", function () {
-    if (clickToggle == false) {
-        clickToggle = true
-        clicka()
-    } else {
-        clickToggle = false
-        clickb()
-    }
-});
