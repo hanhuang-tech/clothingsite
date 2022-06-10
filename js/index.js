@@ -3,7 +3,7 @@ const small = document.querySelector("#s")
 const medium = document.querySelector("#m")
 const large = document.querySelector("#l")
 const chosenSize = document.querySelector("#chosensize")
-let sizeSelected = false
+let sizeSelected = [0, 0, 0];
 
 function renderSize(a) {
     chosenSize.innerHTML = a
@@ -18,7 +18,7 @@ small.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderdg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderlg)";
-    sizeSelected = true
+    sizeSelected[0]++
 });
 medium.addEventListener("click", function () {
     renderSize("M");
@@ -28,8 +28,9 @@ medium.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderdg)";
     large.style.borderColor = "var(--clr-borderlg)";
-    sizeSelected = true
+    sizeSelected[1]++
 });
+
 large.addEventListener("click", function () {
     renderSize("L");
     small.style.color = "var(--clr-fontb)";
@@ -38,7 +39,7 @@ large.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderdg)";
-    sizeSelected = true
+    sizeSelected[2]++
 });
 
 //add to cart
@@ -46,19 +47,35 @@ let size = new Array(3) //s,m,l
 let sizeTotal = 0
 const addToCart = document.querySelector("#addtocart")
 let cartItems = document.querySelector("span.cart")
-let sAdded = 0
-let mAdded = 0
-let lAdded = 0
+let sizeCount = new Array(0, 0, 0)
+
+function alert() {
+    alert("Please select a size first")
+}
+/*
+function sizeMatch(sizeSelected) {
+    var result = new Array();
+    for (var i = 0; i < sizeSelected.length; i++) {
+        // If match found push the match to the result array.
+        if (checkboxValues.indexOf(sizeSelected[i]) != -1) {
+            result.push(carType[i])
+        }
+    }
+    return result;
+}
+
+searchMatch(sizeSelected)
+
 
 addToCart.addEventListener("click", function () {
     for (let i = 0; i < sizeSelected.Length; i++) {
         return sizeSelected[i]
     }
     if (true) {
-        alert("Please select a size first")
+        alert()
     }
     cartItems.innerHTML = `( ` + sizeTotal++ + ` )`
-});
+});*/
 
 //spoiler
 const cartButton = document.querySelector("#cart")
