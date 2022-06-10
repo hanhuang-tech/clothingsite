@@ -261,6 +261,11 @@ h4.sizeOptions {
     padding: 0 20px;
 }
 
+#footericon:hover {
+    background: lightgreen;
+    transition: 1s;
+}
+
 h4.footer {
     position: absolute;
     bottom: -14px;
