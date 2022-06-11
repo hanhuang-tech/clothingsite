@@ -64,13 +64,17 @@ searchMatch(sizeSelected)
 */
 
 addToCart.addEventListener("click", function () {
-    //scan 0 for sizeSelected
+    //check for sizeSelected
     for (let i = 0; i < sizeSelected.length; i++) {
         if (sizeSelected[i] > 0) {
             console.log(i + " inside")
-            cartItems.innerHTML = `( ` + sizeTotal++ + ` )`
+            cartItems.innerHTML = `( ` + ++sizeTotal + ` )`
+            var hasSelected = true
+            break
         }
     }
+    //if item has been selected, return; otherwise display alert
+    if (hasSelected == true) { return }
     alert("Please select a size first")
 });
 
