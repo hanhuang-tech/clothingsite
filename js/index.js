@@ -49,11 +49,7 @@ const addToCart = document.querySelector("#addtocart")
 let cartItems = document.querySelector("span.cart")
 let sizeCount = new Array(0, 0, 0)
 
-function alert() {
-    alert("Please select a size first")
-}
-/*
-function sizeMatch(sizeSelected) {
+/*function sizeMatch(sizeSelected) {
     var result = new Array();
     for (var i = 0; i < sizeSelected.length; i++) {
         // If match found push the match to the result array.
@@ -65,17 +61,18 @@ function sizeMatch(sizeSelected) {
 }
 
 searchMatch(sizeSelected)
-
+*/
 
 addToCart.addEventListener("click", function () {
-    for (let i = 0; i < sizeSelected.Length; i++) {
-        return sizeSelected[i]
+    //scan 0 for sizeSelected
+    for (let i = 0; i < sizeSelected.length; i++) {
+        if (sizeSelected[i] > 0) {
+            console.log(i + " inside")
+            cartItems.innerHTML = `( ` + sizeTotal++ + ` )`
+        }
     }
-    if (true) {
-        alert()
-    }
-    cartItems.innerHTML = `( ` + sizeTotal++ + ` )`
-});*/
+    alert("Please select a size first")
+});
 
 //spoiler
 const cartButton = document.querySelector("#cart")
