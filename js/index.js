@@ -42,25 +42,36 @@ large.addEventListener("click", function () {
     sizeSelected = [false, false, true]
 });
 
-//add to cart
-const cartItems = document.querySelector("span.cart")
-const addToCart = document.querySelector("#addtocart")
-let sizeTotal = 0
-let sizeCount = new Array(0, 0, 0)
+//renderCart
+let spoilSize = document.querySelector("#spoilSize")
+let skipSize = [false, false, false]
+let addSize = false
+let spoiler = document.querySelector("#spoiler")
+let cartItems = spoiler.cloneNode(true)
 
-/*function sizeMatch(sizeSelected) {
-    var result = new Array();
-    for (var i = 0; i < sizeSelected.length; i++) {
-        // If match found push the match to the result array.
-        if (checkboxValues.indexOf(sizeSelected[i]) != -1) {
-            result.push(carType[i])
-        }
+//check if any chosen sizes are not in cart
+function checkEmpty() {
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (sizesCount[i] == 0 && spoilSize.innerHTML == S) { skipSize[0] = true }
+        else if (sizesCount[i] == 0 && spoilSize.innerHTML == M) { skipSize[1] = true }
+        else if (sizesCount[i] == 0 && spoilSize.innerHTML == L) { skipSize[2] = true }
     }
-    return result;
 }
 
-searchMatch(sizeSelected)
-*/
+function renderCart() {
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (skipSize[i] == false) {
+            spoiler.appendChild(cartItems);
+            cartItems.id = `cartt`
+        }
+    }
+}
+
+//add to cart
+const cartAddedItems = document.querySelector("span.cart")
+const addToCart = document.querySelector("#addtocart")
+let sizeTotal = 0
+let sizesCount = [0, 0, 0]
 
 function sizeNotSelected() {
     alert("Please select a size first")
@@ -74,9 +85,10 @@ addToCart.addEventListener("click", function () {
     //check for sizeSelected
     for (let i = 0; i < sizeSelected.length; i++) {
         if (sizeSelected[i] == true) {
-            cartItems.innerHTML = `( ` + ++sizeTotal + ` )`
             var hasSelected = true
-            sizeCount[i]++
+            cartAddedItems.innerHTML = `( ` + ++sizeTotal + ` )`
+            sizesCount[i]++
+            renderCart()
             break
         }
     }
@@ -91,7 +103,7 @@ const cartSpoil = document.querySelector("#spoil")
 const cartOpacity = document.querySelector("img.cart")
 const body = document.querySelector("body")
 let spoilerToggle = false
-let spoiler = document.querySelector("#spoiler")
+
 
 function spoilerClickOn() {
     cartSpoil.classList.replace('hide', 'reveal')
@@ -123,7 +135,6 @@ cartButton.addEventListener("click", function () {
 });
 
 //cart items
-
 function clickOnOff() {
     let cartItems = cartSpoil.cloneNode(true)
     cartItems.id = 'cart2'
