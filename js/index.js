@@ -3,7 +3,7 @@ const small = document.querySelector("#s")
 const medium = document.querySelector("#m")
 const large = document.querySelector("#l")
 const chosenSize = document.querySelector("#chosensize")
-let sizeSelected = [0, 0, 0];
+let sizeSelected = [false, false, false];
 
 function renderSize(a) {
     chosenSize.innerHTML = a
@@ -18,7 +18,7 @@ small.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderdg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderlg)";
-    sizeSelected[0]++
+    sizeSelected = [true, false, false]
 });
 medium.addEventListener("click", function () {
     renderSize("M");
@@ -28,7 +28,7 @@ medium.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderdg)";
     large.style.borderColor = "var(--clr-borderlg)";
-    sizeSelected[1]++
+    sizeSelected = [false, true, false]
 });
 
 large.addEventListener("click", function () {
@@ -39,14 +39,13 @@ large.addEventListener("click", function () {
     small.style.borderColor = "var(--clr-borderlg)";
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderdg)";
-    sizeSelected[2]++
+    sizeSelected = [false, false, true]
 });
 
 //add to cart
-let size = new Array(3) //s,m,l
-let sizeTotal = 0
+const cartItems = document.querySelector("span.cart")
 const addToCart = document.querySelector("#addtocart")
-let cartItems = document.querySelector("span.cart")
+let sizeTotal = 0
 let sizeCount = new Array(0, 0, 0)
 
 /*function sizeMatch(sizeSelected) {
@@ -66,10 +65,11 @@ searchMatch(sizeSelected)
 addToCart.addEventListener("click", function () {
     //check for sizeSelected
     for (let i = 0; i < sizeSelected.length; i++) {
-        if (sizeSelected[i] > 0) {
-            console.log(i + " inside")
+        if (sizeSelected[i] == true) {
             cartItems.innerHTML = `( ` + ++sizeTotal + ` )`
             var hasSelected = true
+            sizeCount[i]++
+            console.log(sizeCount[i] + " i=" + i)
             break
         }
     }

@@ -262,8 +262,11 @@ h4.sizeOptions {
 }
 
 #footericon:hover {
-    background: lightgreen;
-    transition: 1s;
+    transition: 0.2s;
+    border-style: solid;
+    border-color: #222222;
+    border-width: 0 0 3px 3px;
+    border-radius: 3px;
 }
 
 h4.footer {
