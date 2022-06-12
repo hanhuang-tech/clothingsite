@@ -62,6 +62,14 @@ let sizeCount = new Array(0, 0, 0)
 searchMatch(sizeSelected)
 */
 
+function sizeNotSelected() {
+    alert("Please select a size first")
+}
+
+function cartEmpty() {
+    alert("Please add an item to your cart")
+}
+
 addToCart.addEventListener("click", function () {
     //check for sizeSelected
     for (let i = 0; i < sizeSelected.length; i++) {
@@ -69,13 +77,12 @@ addToCart.addEventListener("click", function () {
             cartItems.innerHTML = `( ` + ++sizeTotal + ` )`
             var hasSelected = true
             sizeCount[i]++
-            console.log(sizeCount[i] + " i=" + i)
             break
         }
     }
     //if item has been selected, return; otherwise display alert
     if (hasSelected == true) { return }
-    alert("Please select a size first")
+    sizeNotSelected()
 });
 
 //spoiler
@@ -83,10 +90,10 @@ const cartButton = document.querySelector("#cart")
 const cartSpoil = document.querySelector("#spoil")
 const cartOpacity = document.querySelector("img.cart")
 const body = document.querySelector("body")
-let clickToggle = false
-let spoiler = document.querySelector("spoiler")
+let spoilerToggle = false
+let spoiler = document.querySelector("#spoiler")
 
-function clickOn() {
+function spoilerClickOn() {
     cartSpoil.classList.replace('hide', 'reveal')
     cartOpacity.style.opacity = "1"
     body.style.color = "var(--clr-fonta)"
@@ -94,7 +101,7 @@ function clickOn() {
     cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
 }
 
-function clickOff() {
+function spoilerClickOff() {
     cartSpoil.classList.replace('reveal', 'hide')
     cartOpacity.style.opacity = "0.4"
     body.style.color = "var(--clr-fontb)"
@@ -103,12 +110,15 @@ function clickOff() {
 }
 
 cartButton.addEventListener("click", function () {
-    if (clickToggle == false) {
-        clickToggle = true
-        clickOn()
+    if (sizeTotal == 0) {
+        cartEmpty()
+    }
+    else if (spoilerToggle == false) {
+        spoilerToggle = true
+        spoilerClickOn()
     } else {
-        clickToggle = false
-        clickOff()
+        spoilerToggle = false
+        spoilerClickOff()
     }
 });
 

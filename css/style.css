@@ -17,7 +17,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--clr-fonta);
 }
@@ -55,17 +55,13 @@ body {
         line-height: 0rem;
     }
 
-    h2 {
-        font-size: 1rem;
-    }
-
     h4 {
         line-height: 0;
     }
 
     p {
         font-size: 0.85rem;
-        line-height: 1.2rem;
+        line-height: 1.4rem;
     }
 }
 
@@ -110,6 +106,7 @@ span.mycart {
 
     #cart {
         margin-right: 150px;
+        padding: 2px 7px 2px 32px;
     }
 
     img.cart {
@@ -123,16 +120,44 @@ span.mycart {
 }
 
 /*spoiler*/
-.spoiler {
+#spoiler {
+    display: flex;
     position: absolute;
     z-index: -1;
-    background: white;
     right: 12px;
     top: 30px;
-    height: 200px;
-    width: 340px;
+
+    background: white;
+    width: 300px;
+    height: 120px;
+
+    padding: 1.4em;
     border: 2px solid var(--clr-borderlg);
-    font-size: 4em;
+}
+
+img.spoiler {
+    max-width: 120px;
+}
+
+#description {
+    margin: 0 10px;
+}
+
+span.spoiler {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 0;
+}
+
+#price {
+    display: flex;
+    padding: 20px 0;
+}
+
+h2.price {
+    line-height: 0;
+    padding: 0 4px;
+    margin: 0;
 }
 
 .hide {
@@ -141,6 +166,13 @@ span.mycart {
 
 .reveal {
     opacity: 1;
+}
+
+@media (min-width: 64em) {
+    #spoiler {
+        right: 150px;
+        width: 250px;
+    }
 }
 
 /*tee*/
@@ -176,7 +208,7 @@ p.tee {
     }
 
     div.tee {
-        padding-left: 40px;
+        padding-left: 20px;
     }
 
     h2.tee {
