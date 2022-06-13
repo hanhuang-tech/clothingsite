@@ -63,7 +63,6 @@ addToCart.addEventListener("click", function () {
             var hasSelected = true
             cartAddedItems.innerHTML = `( ` + ++sizeTotal + ` )`
             sizesCount[i]++
-            renderCart()
             break
         }
     }
@@ -79,13 +78,14 @@ let skipSize = [false, false, false]
 let addSize = false
 let spoiler = document.querySelector("#spoiler")
 let spoilerItems = spoiler.cloneNode(true)
+//spoiler.style.visibility = "hidden";
 const cartSpoil = document.querySelector("#spoil")
 let noOfPrice = document.querySelector("#noPrice")
 
 //check if any chosen sizes are not in cart
 function checkEmpty() {
     for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true }
+        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true; console.log("z") }
         else if (sizesCount[i] == 0 && spoilSize.innerHTML == "M") { skipSize[1] = true }
         else if (sizesCount[i] == 0 && spoilSize.innerHTML == "L") { skipSize[2] = true }
     }
@@ -115,18 +115,22 @@ function renderCart() {
 */
 
 function myFunction() {
-
     // Create an "li" node:
-    const node = document.createElement("li");
+    //const node = document.createElement("li");
 
     // Create a text node:
-    const textnode = document.createTextNode("spoiler");
+    //const textnode = document.createTextNode("spoiler");
 
     // Append the text node to the "li" node:
-    node.appendChild(textnode);
+    //node.appendChild(textnode);
 
-    // Append the "li" node to the list:
-    document.getElementById("#spoil").appendChild(node);
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (sizesCount[i] == 0) {
+            document.getElementById("#spoil").appendChild(spoilerItems);
+            spoilSize = "Z"
+            console.log("z")
+        }
+    }
 }
 
 //spoiler
@@ -151,7 +155,7 @@ function spoilerClickOff() {
     body.style.color = "var(--clr-fontb)"
     cartButton.style.background = "var(--clr-header)"
     cartButton.style.borderColor = "transparent transparent white"
-    //renderCart()
+    myFunction()
 }
 
 cartButton.addEventListener("click", function () {
