@@ -42,31 +42,6 @@ large.addEventListener("click", function () {
     sizeSelected = [false, false, true]
 });
 
-//renderCart
-let spoilSize = document.querySelector("#spoilSize")
-let skipSize = [false, false, false]
-let addSize = false
-let spoiler = document.querySelector("#spoiler")
-let cartItems = spoiler.cloneNode(true)
-
-//check if any chosen sizes are not in cart
-function checkEmpty() {
-    for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[i] == 0 && spoilSize.innerHTML == S) { skipSize[0] = true }
-        else if (sizesCount[i] == 0 && spoilSize.innerHTML == M) { skipSize[1] = true }
-        else if (sizesCount[i] == 0 && spoilSize.innerHTML == L) { skipSize[2] = true }
-    }
-}
-
-function renderCart() {
-    for (let i = 0; i < sizesCount.length; i++) {
-        if (skipSize[i] == false) {
-            spoiler.appendChild(cartItems);
-            cartItems.id = `cartt`
-        }
-    }
-}
-
 //add to cart
 const cartAddedItems = document.querySelector("span.cart")
 const addToCart = document.querySelector("#addtocart")
@@ -97,9 +72,65 @@ addToCart.addEventListener("click", function () {
     sizeNotSelected()
 });
 
+
+//renderCart
+let spoilSize = document.querySelector("#spoilSize")
+let skipSize = [false, false, false]
+let addSize = false
+let spoiler = document.querySelector("#spoiler")
+let spoilerItems = spoiler.cloneNode(true)
+const cartSpoil = document.querySelector("#spoil")
+let noOfPrice = document.querySelector("#noPrice")
+
+//check if any chosen sizes are not in cart
+function checkEmpty() {
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true }
+        else if (sizesCount[i] == 0 && spoilSize.innerHTML == "M") { skipSize[1] = true }
+        else if (sizesCount[i] == 0 && spoilSize.innerHTML == "L") { skipSize[2] = true }
+    }
+}
+/*
+function renderCart() {
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (i == 0) {
+            spoilSize.innerHTML = "S"; noOfPrice.innerHTML = sizesCount[i] + "x";
+            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
+            spoilerItems.appendChild(spoiler)
+        }
+        else if (i == 1) {
+            spoilSize.innerHTML = "M"; noOfPrice.innerHTML = sizesCount[i] + "x";
+            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
+            spoilerItems.appendChild(spoiler)
+        }
+        else {
+            spoilSize.innerHTML = "L"; noOfPrice.innerHTML = sizesCount[i] + "x";
+            //spoilerItems.style.transform = "translate(14px,125px)"
+            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
+            spoilerItems.appendChild(spoiler)
+        }
+        console.log(i)
+    }
+}
+*/
+
+function myFunction() {
+
+    // Create an "li" node:
+    const node = document.createElement("li");
+
+    // Create a text node:
+    const textnode = document.createTextNode("spoiler");
+
+    // Append the text node to the "li" node:
+    node.appendChild(textnode);
+
+    // Append the "li" node to the list:
+    document.getElementById("#spoil").appendChild(node);
+}
+
 //spoiler
 const cartButton = document.querySelector("#cart")
-const cartSpoil = document.querySelector("#spoil")
 const cartOpacity = document.querySelector("img.cart")
 const body = document.querySelector("body")
 let spoilerToggle = false
@@ -111,6 +142,7 @@ function spoilerClickOn() {
     body.style.color = "var(--clr-fonta)"
     cartButton.style.background = "white"
     cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
+    myFunction()
 }
 
 function spoilerClickOff() {
@@ -119,6 +151,7 @@ function spoilerClickOff() {
     body.style.color = "var(--clr-fontb)"
     cartButton.style.background = "var(--clr-header)"
     cartButton.style.borderColor = "transparent transparent white"
+    //renderCart()
 }
 
 cartButton.addEventListener("click", function () {
