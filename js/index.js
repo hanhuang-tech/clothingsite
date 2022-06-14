@@ -63,6 +63,7 @@ addToCart.addEventListener("click", function () {
             var hasSelected = true
             cartAddedItems.innerHTML = `( ` + ++sizeTotal + ` )`
             sizesCount[i]++
+            collateSpoil(spoilSmall(), spoilMed(), spoilLarge())
             break
         }
     }
@@ -73,65 +74,64 @@ addToCart.addEventListener("click", function () {
 
 
 //renderCart
-let spoilSize = document.querySelector("#spoilSize")
 let skipSize = [false, false, false]
 let addSize = false
 let spoiler = document.querySelector("#spoiler")
 let spoilerItems = spoiler.cloneNode(true)
-//spoiler.style.visibility = "hidden";
+spoiler.remove()    //remove intial spoiler content
 const cartSpoil = document.querySelector("#spoil")
 let noOfPrice = document.querySelector("#noPrice")
+
+var cartSmall = spoilerItems.cloneNode(true);
+var cartMed = spoilerItems.cloneNode(true);
+var cartLarge = spoilerItems.cloneNode(true);
 
 //check if any chosen sizes are not in cart
 function checkEmpty() {
     for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true; console.log("z") }
+        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true }
         else if (sizesCount[i] == 0 && spoilSize.innerHTML == "M") { skipSize[1] = true }
         else if (sizesCount[i] == 0 && spoilSize.innerHTML == "L") { skipSize[2] = true }
     }
 }
-/*
-function renderCart() {
-    for (let i = 0; i < sizesCount.length; i++) {
-        if (i == 0) {
-            spoilSize.innerHTML = "S"; noOfPrice.innerHTML = sizesCount[i] + "x";
-            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
-            spoilerItems.appendChild(spoiler)
-        }
-        else if (i == 1) {
-            spoilSize.innerHTML = "M"; noOfPrice.innerHTML = sizesCount[i] + "x";
-            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
-            spoilerItems.appendChild(spoiler)
-        }
-        else {
-            spoilSize.innerHTML = "L"; noOfPrice.innerHTML = sizesCount[i] + "x";
-            //spoilerItems.style.transform = "translate(14px,125px)"
-            spoilerItems.style.borderColor = "white var(--clr-borderlg) var(--clr-borderlg) var(--clr-borderlg)"
-            spoilerItems.appendChild(spoiler)
-        }
-        console.log(i)
+
+function spoilSmall() {
+    if (sizesCount[0] > 0) {
+        cartSmall.id = "small";
+        cartSmall.querySelector("#spoilSize").innerHTML = "S"
+        cartSmall.querySelector("#noPrice").innerHTML = sizesCount[0] + "x"
+        console.log("cartSmall")
     }
+    return cartSmall
 }
-*/
 
-function myFunction() {
-    // Create an "li" node:
-    //const node = document.createElement("li");
-
-    // Create a text node:
-    //const textnode = document.createTextNode("spoiler");
-
-    // Append the text node to the "li" node:
-    //node.appendChild(textnode);
-
-    for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[i] == 0) {
-            document.getElementById("#spoil").appendChild(spoilerItems);
-            spoilSize = "Z"
-            console.log("z")
-        }
+function spoilMed() {
+    if (sizesCount[1] > 0) {
+        cartMed.id = "med";
+        cartMed.querySelector("#spoilSize").innerHTML = "M"
+        cartMed.querySelector("#noPrice").innerHTML = sizesCount[1] + "x"
+        console.log("cartMed")
     }
+    return cartMed
 }
+
+function spoilLarge() {
+    if (sizesCount[2] > 0) {
+        cartLarge.id = "large";
+        cartLarge.appendChild(spoilerItems)
+        cartLarge.querySelector("#spoilSize").innerHTML = "L"
+        cartLarge.querySelector("#noPrice").innerHTML = sizesCount[2] + "x"
+        console.log("cartLarge")
+    }
+    return cartLarge
+}
+
+function collateSpoil(small, med, large,) {
+    cartSpoil.appendChild(small);
+    cartSpoil.appendChild(med);
+    cartSpoil.appendChild(large);
+}
+
 
 //spoiler
 const cartButton = document.querySelector("#cart")
@@ -146,7 +146,6 @@ function spoilerClickOn() {
     body.style.color = "var(--clr-fonta)"
     cartButton.style.background = "white"
     cartButton.style.borderColor = "var(--clr-borderlg) var(--clr-borderlg) white"
-    myFunction()
 }
 
 function spoilerClickOff() {
@@ -155,7 +154,6 @@ function spoilerClickOff() {
     body.style.color = "var(--clr-fontb)"
     cartButton.style.background = "var(--clr-header)"
     cartButton.style.borderColor = "transparent transparent white"
-    myFunction()
 }
 
 cartButton.addEventListener("click", function () {
