@@ -81,38 +81,45 @@ let spoilerItems = spoiler.cloneNode(true)
 spoiler.remove()    //remove intial spoiler content
 let cartSpoil = document.querySelector("#spoil")
 let noOfPrice = document.querySelector("#noPrice")
+var cat = []
 
-function cs() {
-    var cartSmall = spoiler.cloneNode(true);
-    cartSmall.querySelector("#spoilSize").id = "carts"
-    cartSmall.querySelector("#noPrice").id = 'cartsprice'
-    return cartSmall
-}
+var ca = [
+    function () {
+        var cartSmall = spoiler.cloneNode(true);
+        cartSmall.querySelector("#spoilSize").id = "carts"
+        cartSmall.querySelector("#carts").innerHTML = "S"
+        cartSmall.querySelector("#noPrice").id = 'cartsprice'
+        cartSmall.querySelector("#cartsprice").innerHTML = sizesCount[0] + "x"
+        return cartSmall
+    },
 
-var cartMed = spoiler.cloneNode(true);
-var cartLarge = spoiler.cloneNode(true);
+    function () {
+        var cartMed = spoiler.cloneNode(true);
+        cartMed.querySelector("#spoilSize").id = "cartm"
+        cartMed.querySelector("#cartm").innerHTML = "M"
+        cartMed.querySelector("#noPrice").id = 'cartmprice'
+        cartMed.querySelector("#cartmprice").innerHTML = sizesCount[1] + "x"
+        return cartMed
+    },
+
+    function () {
+        var cartLarge = spoiler.cloneNode(true);
+        cartLarge.querySelector("#spoilSize").id = "cartl"
+        cartLarge.querySelector("#cartl").innerHTML = "L"
+        cartLarge.querySelector("#noPrice").id = 'cartlprice'
+        cartLarge.querySelector("#cartlprice").innerHTML = sizesCount[2] + "x"
+        return cartLarge
+    }
+]
 
 function spoilerSizes() {
     for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[0] > 0) {
-            cs().querySelector("#carts").innerHTML = "SA"
-            cs().querySelector("#cartsprice").innerHTML = sizesCount[0] + "x"
-            cartSpoil.appendChild(cs())
-            console.log(cs().querySelector("#carts").innerHTML)
-        } else if (sizesCount[1] > 0) {
-            cartMed.querySelector("#spoilSize").innerHTML = "M"
-            cartMed.querySelector("#noPrice").innerHTML = sizesCount[1] + "x"
-            cartSpoil.appendChild(cartMed)
-            console.log("med")
-        } else if (sizesCount[2] > 0) {
-            cartLarge.querySelector("#spoilSize").innerHTML = "L"
-            cartLarge.querySelector("#noPrice").innerHTML = sizesCount[2] + "x"
-            cartSpoil.appendChild(cartLarge)
-            console.log("large")
-        }
+        cat[i] = ca[i]()
+        var cata = cat.join();
+        console.log(cata)
     }
+    cartSpoil.appendChild(document.createTextNode(cata))
 }
-
 
 //spoiler
 const cartButton = document.querySelector("#cart")
