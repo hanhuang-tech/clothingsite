@@ -63,7 +63,7 @@ addToCart.addEventListener("click", function () {
             var hasSelected = true
             cartAddedItems.innerHTML = `( ` + ++sizeTotal + ` )`
             sizesCount[i]++
-            collateSpoil(spoilSmall(), spoilMed(), spoilLarge())
+            spoilerSizes()
             break
         }
     }
@@ -79,57 +79,38 @@ let addSize = false
 let spoiler = document.querySelector("#spoiler")
 let spoilerItems = spoiler.cloneNode(true)
 spoiler.remove()    //remove intial spoiler content
-const cartSpoil = document.querySelector("#spoil")
+let cartSpoil = document.querySelector("#spoil")
 let noOfPrice = document.querySelector("#noPrice")
 
-var cartSmall = spoilerItems.cloneNode(true);
-var cartMed = spoilerItems.cloneNode(true);
-var cartLarge = spoilerItems.cloneNode(true);
-
-//check if any chosen sizes are not in cart
-function checkEmpty() {
-    for (let i = 0; i < sizesCount.length; i++) {
-        if (sizesCount[i] == 0 && spoilSize.innerHTML == "S") { skipSize[0] = true }
-        else if (sizesCount[i] == 0 && spoilSize.innerHTML == "M") { skipSize[1] = true }
-        else if (sizesCount[i] == 0 && spoilSize.innerHTML == "L") { skipSize[2] = true }
-    }
-}
-
-function spoilSmall() {
-    if (sizesCount[0] > 0) {
-        cartSmall.id = "small";
-        cartSmall.querySelector("#spoilSize").innerHTML = "S"
-        cartSmall.querySelector("#noPrice").innerHTML = sizesCount[0] + "x"
-        console.log("cartSmall")
-    }
+function cs() {
+    var cartSmall = spoiler.cloneNode(true);
+    cartSmall.querySelector("#spoilSize").id = "carts"
+    cartSmall.querySelector("#noPrice").id = 'cartsprice'
     return cartSmall
 }
 
-function spoilMed() {
-    if (sizesCount[1] > 0) {
-        cartMed.id = "med";
-        cartMed.querySelector("#spoilSize").innerHTML = "M"
-        cartMed.querySelector("#noPrice").innerHTML = sizesCount[1] + "x"
-        console.log("cartMed")
-    }
-    return cartMed
-}
+var cartMed = spoiler.cloneNode(true);
+var cartLarge = spoiler.cloneNode(true);
 
-function spoilLarge() {
-    if (sizesCount[2] > 0) {
-        cartLarge.id = "large";
-        cartLarge.appendChild(spoilerItems)
-        cartLarge.querySelector("#spoilSize").innerHTML = "L"
-        cartLarge.querySelector("#noPrice").innerHTML = sizesCount[2] + "x"
-        console.log("cartLarge")
+function spoilerSizes() {
+    for (let i = 0; i < sizesCount.length; i++) {
+        if (sizesCount[0] > 0) {
+            cs().querySelector("#carts").innerHTML = "SA"
+            cs().querySelector("#cartsprice").innerHTML = sizesCount[0] + "x"
+            cartSpoil.appendChild(cs())
+            console.log(cs().querySelector("#carts").innerHTML)
+        } else if (sizesCount[1] > 0) {
+            cartMed.querySelector("#spoilSize").innerHTML = "M"
+            cartMed.querySelector("#noPrice").innerHTML = sizesCount[1] + "x"
+            cartSpoil.appendChild(cartMed)
+            console.log("med")
+        } else if (sizesCount[2] > 0) {
+            cartLarge.querySelector("#spoilSize").innerHTML = "L"
+            cartLarge.querySelector("#noPrice").innerHTML = sizesCount[2] + "x"
+            cartSpoil.appendChild(cartLarge)
+            console.log("large")
+        }
     }
-    return cartLarge
-}
-
-function collateSpoil(small, med, large,) {
-    cartSpoil.appendChild(small);
-    cartSpoil.appendChild(med);
-    cartSpoil.appendChild(large);
 }
 
 
