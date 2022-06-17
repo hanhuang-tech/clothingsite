@@ -1,9 +1,9 @@
 //render selectSize
 const small = document.querySelector("#s")
-const medium = document.querySelector("#m")
-const large = document.querySelector("#l")
+/*const medium = document.querySelector("#m")
+const large = document.querySelector("#l")*/
 const chosenSize = document.querySelector("#chosensize")
-let sizeSelected = [false, false, false];
+let sizeSelected = [false];
 
 function renderSize(a) {
     chosenSize.innerHTML = a
@@ -13,14 +13,14 @@ function renderSize(a) {
 small.addEventListener("click", function () {
     renderSize("S");
     small.style.color = "var(--clr-fonta)";
-    medium.style.color = "var(--clr-fontb)";
-    large.style.color = "var(--clr-fontb)";
+    /*medium.style.color = "var(--clr-fontb)";
+    large.style.color = "var(--clr-fontb)";*/
     small.style.borderColor = "var(--clr-borderdg)";
-    medium.style.borderColor = "var(--clr-borderlg)";
-    large.style.borderColor = "var(--clr-borderlg)";
-    sizeSelected = [true, false, false]
+    /*medium.style.borderColor = "var(--clr-borderlg)";
+    large.style.borderColor = "var(--clr-borderlg)";*/
+    sizeSelected = [true]
 });
-medium.addEventListener("click", function () {
+/*medium.addEventListener("click", function () {
     renderSize("M");
     small.style.color = "var(--clr-fontb)";
     medium.style.color = "var(--clr-fonta)";
@@ -40,7 +40,7 @@ large.addEventListener("click", function () {
     medium.style.borderColor = "var(--clr-borderlg)";
     large.style.borderColor = "var(--clr-borderdg)";
     sizeSelected = [false, false, true]
-});
+});*/
 
 //add to cart
 const cartAddedItems = document.querySelector("span.cart")
@@ -74,24 +74,22 @@ addToCart.addEventListener("click", function () {
 
 
 //renderCart
-let skipSize = [false, false, false]
-let addSize = false
 let spoiler = document.querySelector("#spoiler")
-let spoilerItems = spoiler.cloneNode(true)
 spoiler.remove()    //remove intial spoiler content
 let cartSpoil = document.querySelector("#spoil")
 let noOfPrice = document.querySelector("#noPrice")
-var cat = []
 
 var ca = [
     function () {
         var cartSmall = spoiler.cloneNode(true);
-        cartSmall.querySelector("#spoilSize").id = "carts"
-        cartSmall.querySelector("#carts").innerHTML = "S"
-        cartSmall.querySelector("#noPrice").id = 'cartsprice'
-        cartSmall.querySelector("#cartsprice").innerHTML = sizesCount[0] + "x"
+        cartSmall.querySelector("#spoilSize").id = "cSmall"
+        cartSmall.querySelector("#cSmall").innerHTML = "S"
+        cartSmall.querySelector("#noPrice").id = 'cSPrice'
+        cartSmall.querySelector("#cSPrice").innerHTML = sizesCount[0] + "x"
         return cartSmall
-    },
+    }
+
+    /*,
 
     function () {
         var cartMed = spoiler.cloneNode(true);
@@ -109,16 +107,14 @@ var ca = [
         cartLarge.querySelector("#noPrice").id = 'cartlprice'
         cartLarge.querySelector("#cartlprice").innerHTML = sizesCount[2] + "x"
         return cartLarge
-    }
+    }*/
 ]
 
 function spoilerSizes() {
-    for (let i = 0; i < sizesCount.length; i++) {
+    /*for (let i = 0; i < sizesCount.length; i++) {
         cat[i] = ca[i]()
-        var cata = cat.join();
-        console.log(cata)
-    }
-    cartSpoil.appendChild(document.createTextNode(cata))
+    }*/
+    cartSpoil.append(ca[0]())
 }
 
 //spoiler
@@ -156,13 +152,3 @@ cartButton.addEventListener("click", function () {
         spoilerClickOff()
     }
 });
-
-//cart items
-function clickOnOff() {
-    let cartItems = cartSpoil.cloneNode(true)
-    cartItems.id = 'cart2'
-    cartItems.classList.add('test')
-    //add vers 2 after spoiler
-    document.body.appendChild(cartItems);
-}
-
