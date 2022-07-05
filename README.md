@@ -1,5 +1,5 @@
 ## Clothing Site
-- Simple frontend clothing site built upon HTML/CSS, JavaScript.
+- Simple responsive frontend clothing site built upon HTML/CSS, JavaScript.
 
 **Frontend**  
 HTML: Shop frontend featuring Classic Tee, Small size choice and option to add items to My cart  
